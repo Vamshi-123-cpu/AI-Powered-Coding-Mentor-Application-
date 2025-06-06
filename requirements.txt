@@ -1,6 +1,9 @@
-pandas
 streamlit
-langchain
-langchain-community
-langchain_huggingface
+pandas
+openai
+python-dotenv
+speechrecognition
+langchain==0.1.16
+langchain-community==0.0.32
+langchain-huggingface
 huggingface_hub==0.17.3

@@ -2,5 +2,5 @@ pandas
 streamlit
 langchain
 langchain-community
-huggingface_hub
 langchain_huggingface
+huggingface_hub==0.17.3

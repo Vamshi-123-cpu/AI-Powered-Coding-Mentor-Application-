@@ -1,8 +1,5 @@
-pandas
-streamlit
-langchain
-langchain-community
-huggingface_hub
-langchain_huggingface
-langchain
-requests
+streamlit==1.25.0
+langchain==0.0.240
+langchain-community==0.0.42
+huggingface_hub==0.15.1
+requests==2.31.0

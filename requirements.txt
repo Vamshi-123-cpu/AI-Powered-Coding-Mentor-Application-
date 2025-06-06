@@ -1,0 +1,7 @@
+streamlit
+pandas
+matplotlib
+Pillow
+huggingface_hub
+langchain
+openai

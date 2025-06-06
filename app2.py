@@ -1,6 +1,7 @@
 import os
 import streamlit as st 
-from langchain_community.llms import HuggingFaceEndpoint
+from langchain_community.llms import HuggingFaceHub
+
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain.chat_models import ChatOpenAI
 

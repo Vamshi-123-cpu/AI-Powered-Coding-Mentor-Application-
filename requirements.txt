@@ -1,5 +1,5 @@
 streamlit==1.25.0
-langchain==0.0.240
-langchain-community==0.0.42
-huggingface_hub==0.15.1
-requests==2.31.0
+langchain==0.0.223
+langchain-community==0.0.36
+huggingface_hub==0.12.0
+requests==2.28.2

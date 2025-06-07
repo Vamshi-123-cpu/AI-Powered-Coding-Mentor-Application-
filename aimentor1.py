@@ -1,19 +1,14 @@
-import os
-import streamlit as st
-from langchain.chat_models import ChatOpenAI  # ✅ use this
-from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
-
-
 import streamlit as st
 from langchain_community.chat_models import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
-# Get API key from Streamlit secrets
+# ✅ Load API Key from Streamlit secrets
 openrouter_api_key = st.secrets.get("OPENROUTER_API_KEY")
 if not openrouter_api_key:
     st.error("❌ OPENROUTER_API_KEY not found in secrets!")
     st.stop()
 
-# Initialize the chat model with API key and base URL
+# ✅ Create model with correct API key and base
 model = ChatOpenAI(
     model_name="mistralai/mistral-7b-instruct:free",
     temperature=0.5,
@@ -22,6 +17,22 @@ model = ChatOpenAI(
     base_url="https://openrouter.ai/api/v1"
 )
 
+# Example prompt
+st.title("AI Mentor Real-time Answer")
+
+user_input = st.text_input("Ask your question:")
+
+if user_input:
+    prompt = ChatPromptTemplate.from_messages([
+        SystemMessagePromptTemplate.from_template("You are a helpful AI mentor."),
+        HumanMessagePromptTemplate.from_template("{question}")
+    ])
+    try:
+        messages = prompt.format_messages(question=user_input)
+        response = model.invoke(messages)
+        st.markdown(f"**🤖 AI Mentor:** {response.content}")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 
 # ... rest of your code here ...

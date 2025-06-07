@@ -1,6 +1,7 @@
 import os
 import streamlit as st
-from langchain_community.chat_models import ChatOpenRouter
+from langchain.chat_models import ChatOpenAI  # ✅ CORRECT ONE for OpenRouter
+
 
 # Load OpenRouter API Key from environment variables
 openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
@@ -9,12 +10,13 @@ if not openrouter_api_key:
     st.stop()
 
 # Initialize the ChatOpenRouter model with the API key
-model = ChatOpenRouter(
-    model="mistralai/mistral-7b-instruct:free",
+model = ChatOpenAI(
+    model_name="gpt-4o",  # or any other OpenRouter-supported model
     temperature=0.5,
-    max_tokens=300,
-    api_key=openrouter_api_key
+    openai_api_key=openrouter_api_key,
+    base_url="https://openrouter.ai/api/v1"
 )
+
 
 # ... rest of your code here ...
 

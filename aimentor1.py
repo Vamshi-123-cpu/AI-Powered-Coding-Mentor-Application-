@@ -23,11 +23,6 @@ model = ChatOpenAI(
 
 # ... rest of your code here ...
 
-
-# Set the API base for OpenRouter
-os.environ["OPENAI_API_BASE"] = "https://openrouter.ai/api/v1"
-os.environ["OPENAI_API_KEY"] = openrouter_api_key
-
 st.set_page_config(page_title="Quality Thought AI Mentor", page_icon="🧠", layout="wide")
 
 st.markdown("""

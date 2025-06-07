@@ -1,6 +1,7 @@
 import os
 import streamlit as st
-from langchain.chat_models import ChatOpenAI  # ✅ CORRECT ONE for OpenRouter
+from langchain.chat_models import ChatOpenAI  # ✅ use this
+from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
 
 # Load OpenRouter API Key from environment variables

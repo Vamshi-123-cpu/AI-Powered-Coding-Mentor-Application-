@@ -17,24 +17,6 @@ model = ChatOpenAI(
     base_url="https://openrouter.ai/api/v1"
 )
 
-# Example prompt
-st.title("AI Mentor Real-time Answer")
-
-user_input = st.text_input("Ask your question:")
-
-if user_input:
-    prompt = ChatPromptTemplate.from_messages([
-        SystemMessagePromptTemplate.from_template("You are a helpful AI mentor."),
-        HumanMessagePromptTemplate.from_template("{question}")
-    ])
-    try:
-        messages = prompt.format_messages(question=user_input)
-        response = model.invoke(messages)
-        st.markdown(f"**🤖 AI Mentor:** {response.content}")
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
-
-
 # ... rest of your code here ...
 
 st.set_page_config(page_title="Quality Thought AI Mentor", page_icon="🧠", layout="wide")

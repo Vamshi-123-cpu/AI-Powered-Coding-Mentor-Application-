@@ -4,19 +4,21 @@ from langchain.chat_models import ChatOpenAI  # ✅ use this
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
 
-# Load OpenRouter API Key from environment variables
-openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
-if not openrouter_api_key:
-    st.error("❌ OPENROUTER_API_KEY not set in environment variables.")
-    st.stop()
+import streamlit as st
+from langchain_community.chat_models import ChatOpenAI
 
-# Initialize the ChatOpenRouter model with the API key
+# Get API key from Streamlit secrets
+openrouter_api_key = st.secrets["OPENROUTER_API_KEY"]
+
+# Initialize the chat model with API key and base URL
 model = ChatOpenAI(
-    model_name="gpt-4o",  # or any other OpenRouter-supported model
+    model_name="mistralai/mistral-7b-instruct:free",
     temperature=0.5,
+    max_tokens=300,
     openai_api_key=openrouter_api_key,
     base_url="https://openrouter.ai/api/v1"
 )
+
 
 
 # ... rest of your code here ...

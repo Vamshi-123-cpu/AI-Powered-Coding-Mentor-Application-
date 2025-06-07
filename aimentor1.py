@@ -8,7 +8,10 @@ import streamlit as st
 from langchain_community.chat_models import ChatOpenAI
 
 # Get API key from Streamlit secrets
-openrouter_api_key = st.secrets["OPENROUTER_API_KEY"]
+openrouter_api_key = st.secrets.get("OPENROUTER_API_KEY")
+if not openrouter_api_key:
+    st.error("❌ OPENROUTER_API_KEY not found in secrets!")
+    st.stop()
 
 # Initialize the chat model with API key and base URL
 model = ChatOpenAI(

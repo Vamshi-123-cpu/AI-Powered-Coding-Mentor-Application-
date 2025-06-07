@@ -143,11 +143,6 @@ if st.session_state.mentor_type:
     experience = st.slider("Your experience (in years):", 0, 20, 1)
     user_input = st.text_input("Ask your question (multi-language supported):")
     output_container = st.empty()
-
-    model = ChatOpenAI(
-        model="mistralai/mistral-7b-instruct:free",
-        temperature=0.5,
-        max_tokens=300
     )
 
     prompt = ChatPromptTemplate.from_messages([

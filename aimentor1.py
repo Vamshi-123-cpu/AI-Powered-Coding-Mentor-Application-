@@ -8,7 +8,7 @@ if not openrouter_api_key:
     st.error("❌ OPENROUTER_API_KEY not found in secrets!")
     st.stop()
 
-# ✅ Create model with correct API key and base
+# ✅ Create model only once
 model = ChatOpenAI(
     model_name="mistralai/mistral-7b-instruct:free",
     temperature=0.5,
@@ -17,10 +17,10 @@ model = ChatOpenAI(
     base_url="https://openrouter.ai/api/v1"
 )
 
-# ... rest of your code here ...
-
+# ✅ Streamlit page setup
 st.set_page_config(page_title="Quality Thought AI Mentor", page_icon="🧠", layout="wide")
 
+# ✅ Styling
 st.markdown("""
     <style>
     .main {
@@ -97,6 +97,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# ✅ Welcome banner
 st.markdown("""
 <div class='welcome-box'>
     <h1>Welcome to Quality Thought AI Mentor 🧠</h1>
@@ -106,26 +107,14 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Sidebar for modules
+# ✅ Sidebar Module Selection
 st.sidebar.title("📚 Select a Module")
 modules = [
-    ("Python", "🐍"),
-    ("SQL", "📓"),
-    ("PowerBI", "📊"),
-    ("Statistics", "📈"),
-    ("Machine Learning", "🤖"),
-    ("Deep Learning", "🧠"),
-    ("Java", "☕"),
-    ("JavaScript", "🟨"),
-    ("C++", "💻"),
-    ("HTML/CSS", "🌐"),
-    ("R Programming", "📊"),
-    ("Data Structures", "🗂️"),
-    ("Algorithms", "🔍"),
-    ("System Design", "🏗️"),
-    ("Linux", "🐧"),
-    ("DevOps", "⚙️"),
-    ("Git & GitHub", "🔧")
+    ("Python", "🐍"), ("SQL", "📓"), ("PowerBI", "📊"), ("Statistics", "📈"),
+    ("Machine Learning", "🤖"), ("Deep Learning", "🧠"), ("Java", "☕"),
+    ("JavaScript", "🟨"), ("C++", "💻"), ("HTML/CSS", "🌐"),
+    ("R Programming", "📊"), ("Data Structures", "🗂️"), ("Algorithms", "🔍"),
+    ("System Design", "🏗️"), ("Linux", "🐧"), ("DevOps", "⚙️"), ("Git & GitHub", "🔧")
 ]
 
 if 'mentor_type' not in st.session_state:
@@ -138,12 +127,12 @@ for module, emoji in modules:
         st.session_state.mentor_type = module
         st.session_state.mentor_emoji = emoji
 
+# ✅ Main Interaction Section
 if st.session_state.mentor_type:
     st.subheader(f"{st.session_state.mentor_emoji} {st.session_state.mentor_type.upper()} Mentor Chat")
     experience = st.slider("Your experience (in years):", 0, 20, 1)
     user_input = st.text_input("Ask your question (multi-language supported):")
     output_container = st.empty()
-    )
 
     prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
@@ -174,4 +163,5 @@ if st.session_state.mentor_type:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
+# ✅ Footer
 st.markdown("<div class='powered-by'>🚀 Powered by Vamshi</div>", unsafe_allow_html=True)
